@@ -6,7 +6,7 @@
 
 ① 分别进入 `mysql`、`php`、`nginx` 目录，按照说明进行安装（Windows XP/2003 系统下最高支持版本为 `mysql-5.6.20` `php-5.4.31`）
 
-② 运行 `Start` 启动环境
+② 运行 `.\Bin\WebStart.Bat` 启动环境
 
 ③ 浏览器访问 `http://localhost/`，出现 `400 Bad Request` 说明 Nignx 配置正常
 
@@ -16,7 +16,7 @@
 
 ⑥ 访问 `http://localhost/phpmyadmin`，出现 `phpmyadmin` 登录界面说明 phpmyadmin 配置正常
 
-⑦ 运行 `Start` 重启环境或运行 `Stop` 停止环境
+⑦ 运行 `.\Bin\WebStart.Bat` 重启环境或运行 `.\Bin\WebStop.Bat` 停止环境
 
 
 ## 全局变量
@@ -35,4 +35,4 @@
 
 # 协议
 
-[MIT](https://github.com/maicong/WNMP/blob/master/LICENSE)
+[MIT](https://github.com/DocTam/Wnmp/blob/master/LICENSE)
