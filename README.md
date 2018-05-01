@@ -4,7 +4,7 @@
 
 ## 使用
 
-① 分别进入 `mysql`、`php`、`nginx` 目录，按照说明进行安装（Windows XP/2003 系统下最高支持版本为 `mysql-5.6.20` `php-5.4.31`）
+① 分别进入 `mysql`、`php`、`nginx` 目录，按照说明进行安装（Windows XP/2003 系统下最高支持版本为 `mysql-5.6.20` `php-5.4.31` `phpmyadmin-4.2.7`）
 
 ② 运行 `.\Bin\WebStart.Bat` 启动环境
 
