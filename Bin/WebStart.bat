@@ -1,16 +1,16 @@
 @Echo off
 SetLocal EnableDelayedExpansion
-Title Windows ÏÂÔËÐÐ MySql PHP Nginx By DocTam£¨ÇéÃÔÍøÂ·£©
+Title Windows ä¸‹è¿è¡Œ MySql PHP Nginx By DocTamï¼ˆæƒ…è¿·ç½‘è·¯ï¼‰
 
 Rem
-Rem ×÷Õß£ºDocTam£¨ÇéÃÔÍøÂ·£©
-Rem °æ±¾£º1.0.1£¨20180429£©
-Rem ¹¦ÄÜ£ºWindows ÏÂÔËÐÐ MySql PHP Nginx£¨Windows XP/2003 ÏµÍ³ÏÂ×î¸ßÖ§³Ö°æ±¾Îª mysql-5.6.20 php-5.4.31£©
-Rem ÃèÊö£º±¾½Å±¾ÖÇÄÜ¼ì²âÔËÐÐ»·¾³£¨VC¡¢MySql¡¢PHP¡¢Nginx£©£¬
-Rem       PHP¶Ë¿ÚÐÞ¸ÄÎª 8999£¨ÈçÓÐ³åÍ»¿ÉÊÖ¶¯¸ü¸ÄºÏÊÊ¶Ë¿Ú£©£¬
-Rem       ¸Ä¶¯µØ·½ÓÐÁ½´¦£º
-Rem       1.  ±¾½Å±¾ÄÚ 127.0.0.1:8999
-Rem       2.  ÎÄ¼þ nginx\°æ±¾ºÅ\config\conf.d\web.conf ÄÚ 127.0.0.1:8999
+Rem ä½œè€…ï¼šDocTamï¼ˆæƒ…è¿·ç½‘è·¯ï¼‰
+Rem ç‰ˆæœ¬ï¼š1.0.1ï¼ˆ20180429ï¼‰
+Rem åŠŸèƒ½ï¼šWindows ä¸‹è¿è¡Œ MySql PHP Nginxï¼ˆWindows XP/2003 ç³»ç»Ÿä¸‹æœ€é«˜æ”¯æŒç‰ˆæœ¬ä¸º mysql-5.6.20 php-5.4.31ï¼‰
+Rem æè¿°ï¼šæœ¬è„šæœ¬æ™ºèƒ½æ£€æµ‹è¿è¡ŒçŽ¯å¢ƒï¼ˆVCã€MySqlã€PHPã€Nginxï¼‰ï¼Œ
+Rem       PHPç«¯å£ä¿®æ”¹ä¸º 8999ï¼ˆå¦‚æœ‰å†²çªå¯æ‰‹åŠ¨æ›´æ”¹åˆé€‚ç«¯å£ï¼‰ï¼Œ
+Rem       æ”¹åŠ¨åœ°æ–¹æœ‰ä¸¤å¤„ï¼š
+Rem       1.  æœ¬è„šæœ¬å†… 127.0.0.1:8999
+Rem       2.  æ–‡ä»¶ nginx\ç‰ˆæœ¬å·\config\conf.d\web.conf å†… 127.0.0.1:8999
 Rem
 
 Pushd %~Dp0
@@ -30,7 +30,10 @@ Exit
 Goto :Eof
 :Set_Var
 Set Wnmp_Dir=%~Dp0
-For %%i in ("%Wnmp_Dir:~0,-1%") do Set Wnmp_Dir=%%~Dpi
+For %%i in ("%Wnmp_Dir:~0,-1%") do (
+  Set Wnmp_Dir=%%~Dpi
+  If Not Exist !Wnmp_Dir!Tmp Md !Wnmp_Dir!Tmp
+)
 
 Goto :Eof
 :Conf_Run
