@@ -5,7 +5,7 @@ Title Windows 下运行 MySql PHP Nginx By DocTam（情迷网路）
 Rem
 Rem 作者：DocTam（情迷网路）
 Rem 版本：1.0.1（20180429）
-Rem 功能：Windows 下运行 MySql PHP Nginx（Windows XP/2003 系统下最高支持版本为 mysql-5.6.20 php-5.4.31）
+Rem 功能：Windows 下运行 MySql PHP Nginx（Windows XP/2003 系统下最高支持版本为 mysql-5.6.20 php-5.4.31 phpmyadmin-4.2.7）
 Rem 描述：本脚本智能检测运行环境（VC、MySql、PHP、Nginx），
 Rem       PHP端口修改为 8999（如有冲突可手动更改合适端口），
 Rem       改动地方有两处：
