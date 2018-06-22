@@ -17,6 +17,7 @@ Pushd %~Dp0
 For %%R in (
   Set_Var
   Conf_Run
+  Create_Lnk
 ) do (
   Set Run_Value=%%R
   If "!Run_Value:~0,2!" Neq "::" (
@@ -130,3 +131,8 @@ For %%i in (%1) do (
     )   
   )
 )
+
+Goto :Eof
+:Create_Lnk
+NirCmd shortcut "%~F0" "!Wnmp_Dir!" "Wnmp_Start" "" "!Wnmp_Dir!Icon\icon_start.ico" "" "min" "" ""
+NirCmd shortcut "%~Dp0WebStop.bat" "!Wnmp_Dir!" "Wnmp_Stop" "" "!Wnmp_Dir!Icon\icon_stop.ico" "" "min" "" ""
