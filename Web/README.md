@@ -10,4 +10,7 @@ Development Versions 是开发版，Latest Stable Version 是稳定版，Older R
 
 解压下载包，将目录所有文件复制到 `当前目录\phpmyadmin`
 
-或直接解压预置版本 `phpmyadmin.7z` 到 `当前目录`
+或直接解压预置版本 `phpmyadmin_V4.2.7.7z` 到 `当前目录`
+
+PHP 5.5 以下版本请使用 phpmyadmin_V4.2.7
+
