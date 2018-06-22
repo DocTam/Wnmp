@@ -1,16 +1,16 @@
 @Echo off
 SetLocal EnableDelayedExpansion
-Title Windows ä¸‹è¿è¡Œ MySql PHP Nginx By DocTamï¼ˆæƒ…è¿·ç½‘è·¯ï¼‰
+Title Windows ÏÂÔËÐÐ MySql PHP Nginx By DocTam£¨ÇéÃÔÍøÂ·£©
 
 Rem
-Rem ä½œè€…ï¼šDocTamï¼ˆæƒ…è¿·ç½‘è·¯ï¼‰
-Rem ç‰ˆæœ¬ï¼š1.0.1ï¼ˆ20180429ï¼‰
-Rem åŠŸèƒ½ï¼šWindows ä¸‹è¿è¡Œ MySql PHP Nginxï¼ˆWindows XP/2003 ç³»ç»Ÿä¸‹æœ€é«˜æ”¯æŒç‰ˆæœ¬ä¸º mysql-5.6.20 php-5.4.31 phpmyadmin-4.2.7ï¼‰
-Rem æè¿°ï¼šæœ¬è„šæœ¬æ™ºèƒ½æ£€æµ‹è¿è¡ŒçŽ¯å¢ƒï¼ˆVCã€MySqlã€PHPã€Nginxï¼‰ï¼Œ
-Rem       PHPç«¯å£ä¿®æ”¹ä¸º 8999ï¼ˆå¦‚æœ‰å†²çªå¯æ‰‹åŠ¨æ›´æ”¹åˆé€‚ç«¯å£ï¼‰ï¼Œ
-Rem       æ”¹åŠ¨åœ°æ–¹æœ‰ä¸¤å¤„ï¼š
-Rem       1.  æœ¬è„šæœ¬å†… 127.0.0.1:8999
-Rem       2.  æ–‡ä»¶ nginx\ç‰ˆæœ¬å·\config\conf.d\web.conf å†… 127.0.0.1:8999
+Rem ×÷Õß£ºDocTam£¨ÇéÃÔÍøÂ·£©
+Rem °æ±¾£º1.0.1£¨20180429£©
+Rem ¹¦ÄÜ£ºWindows ÏÂÔËÐÐ MySql PHP Nginx£¨Windows XP/2003 ÏµÍ³ÏÂ×î¸ßÖ§³Ö°æ±¾Îª mysql-5.6.20 php-5.4.31 phpmyadmin-4.2.7£©
+Rem ÃèÊö£º±¾½Å±¾ÖÇÄÜ¼ì²âÔËÐÐ»·¾³£¨VC¡¢MySql¡¢PHP¡¢Nginx£©£¬
+Rem       PHP¶Ë¿ÚÐÞ¸ÄÎª 8999£¨ÈçÓÐ³åÍ»¿ÉÊÖ¶¯¸ü¸ÄºÏÊÊ¶Ë¿Ú£©£¬
+Rem       ¸Ä¶¯µØ·½ÓÐÁ½´¦£º
+Rem       1.  ±¾½Å±¾ÄÚ 127.0.0.1:8999
+Rem       2.  ÎÄ¼þ nginx\°æ±¾ºÅ\config\conf.d\web.conf ÄÚ 127.0.0.1:8999
 Rem
 
 Pushd %~Dp0
@@ -84,6 +84,7 @@ For %%I in (
 Goto :Eof
 :Php_Run
 For %%i in (%1) do (
+  Rem Del /f /q /s %1
   If Not Exist %1 (
     Copy /y "%%~Fi-development" %1
     Set extension_dir=%%~DpiExt\
@@ -110,9 +111,11 @@ Goto :Eof
 :Nginx_Run
 For %%i in (%1) do (
   If Not Exist "%%~Dpiconf\conf.d" (
-    Echo A | XCopy /E /G /H /Y "%%~Dpiconfig\*" "%%~Dpiconf\"
     Set Nginx_Conf=%%~Dpi
     Set Nginx_Conf=!Nginx_Conf:\=/!
+    For %%j in ("!Nginx_Conf:~0,-1!") do (
+      Echo A | XCopy /E /G /H /Y "%%~Dpjconfig\*" "%%~Dpiconf\"
+    )
     Wfr "%%~Dpiconf\%%~Ni.conf" -fic:"C:/server/nginx/" -t:"!Nginx_Conf!"
     Set Document_Root=!Wnmp_Dir!Web
     Set Document_Root=!Document_Root:\=/!
