@@ -142,7 +142,7 @@ For %%i in (
   If Exist %%i (
     Rem 处理配置文件现在需要一个短语密码的问题
     Wfr %%i -fic:"$cfg['blowfish_secret'] = '';" -t:"$cfg['blowfish_secret'] = 'DeletePhpMyAdminSecretTipsForDocTam';" %Wfr_Encode%
-    Rem Configuration of pmadb… 错误文档 基本功能 已禁用 的问题，请导入 phpMyAdmin\sql\create_tables.sql
+    Rem Configuration of pmadb… 错误文档 基本功能 已禁用 的问题，请导入 phpMyAdmin\sql\create_tables.sql 若必要请去除 phpmyadmin\config.sample.inc.php 内 /* Storage database and tables */ 处上下的相关内容的注释符
     Rem Wfr %%i -fic:"$cfg['Servers'][$i]['controluser'] = '';" -t:"$cfg['Servers'][$i]['controluser'] = 'root';" %Wfr_Encode%
     Rem Wfr %%i -fic:"$cfg['Servers'][$i]['controlpass'] = '';" -t:"$cfg['Servers'][$i]['controlpass'] = 'root';" %Wfr_Encode%
   )
