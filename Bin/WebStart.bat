@@ -1,22 +1,23 @@
 @Echo off
 SetLocal EnableDelayedExpansion
-Title Windows ÏÂÔËĞĞ MySql PHP Nginx By DocTam£¨ÇéÃÔÍøÂ·£©
+Title Windows ä¸‹è¿è¡Œ MySql PHP Nginx By DocTamï¼ˆæƒ…è¿·ç½‘è·¯ï¼‰
 
 Rem
-Rem ×÷Õß£ºDocTam£¨ÇéÃÔÍøÂ·£©
-Rem °æ±¾£º1.0.1£¨20180429£©
-Rem ¹¦ÄÜ£ºWindows ÏÂÔËĞĞ MySql PHP Nginx£¨Windows XP/2003 ÏµÍ³ÏÂ×î¸ßÖ§³Ö°æ±¾Îª mysql-5.6.20 php-5.4.31 phpmyadmin-4.2.7£©
-Rem ÃèÊö£º±¾½Å±¾ÖÇÄÜ¼ì²âÔËĞĞ»·¾³£¨VC¡¢MySql¡¢PHP¡¢Nginx£©£¬
-Rem       PHP¶Ë¿ÚĞŞ¸ÄÎª 8999£¨ÈçÓĞ³åÍ»¿ÉÊÖ¶¯¸ü¸ÄºÏÊÊ¶Ë¿Ú£©£¬
-Rem       ¸Ä¶¯µØ·½ÓĞÁ½´¦£º
-Rem       1.  ±¾½Å±¾ÄÚ 127.0.0.1:8999
-Rem       2.  ÎÄ¼ş nginx\°æ±¾ºÅ\config\conf.d\web.conf ÄÚ 127.0.0.1:8999
+Rem ä½œè€…ï¼šDocTamï¼ˆæƒ…è¿·ç½‘è·¯ï¼‰
+Rem ç‰ˆæœ¬ï¼š1.0.1ï¼ˆ20180429ï¼‰
+Rem åŠŸèƒ½ï¼šWindows ä¸‹è¿è¡Œ MySql PHP Nginxï¼ˆWindows XP/2003 ç³»ç»Ÿä¸‹æœ€é«˜æ”¯æŒç‰ˆæœ¬ä¸º mysql-5.6.20 php-5.4.31 phpmyadmin-4.2.7ï¼‰
+Rem æè¿°ï¼šæœ¬è„šæœ¬æ™ºèƒ½æ£€æµ‹è¿è¡Œç¯å¢ƒï¼ˆVCã€MySqlã€PHPã€Nginxï¼‰ï¼Œ
+Rem       PHPç«¯å£ä¿®æ”¹ä¸º 8999ï¼ˆå¦‚æœ‰å†²çªå¯æ‰‹åŠ¨æ›´æ”¹åˆé€‚ç«¯å£ï¼‰ï¼Œ
+Rem       æ”¹åŠ¨åœ°æ–¹æœ‰ä¸¤å¤„ï¼š
+Rem       1.  æœ¬è„šæœ¬å†… 127.0.0.1:8999
+Rem       2.  æ–‡ä»¶ nginx\config\conf.d\web.conf å†… 127.0.0.1:8999
 Rem
 
 Pushd %~Dp0
 For %%R in (
   Set_Var
   Conf_Run
+  PhpMyAdmin_Conf
   Create_Lnk
 ) do (
   Set Run_Value=%%R
@@ -35,6 +36,7 @@ For %%i in ("%Wnmp_Dir:~0,-1%") do (
   Set Wnmp_Dir=%%~Dpi
   If Not Exist !Wnmp_Dir!Tmp Md !Wnmp_Dir!Tmp
 )
+Set Wfr_Encode=/encin:utf-8 /encout:utf-8
 
 Goto :Eof
 :Conf_Run
@@ -103,7 +105,7 @@ For %%i in (%1) do (
       extension=php_mbstring.dll
       extension=php_mysqli.dll
     ) do (
-      Wfr %1 -fic:";%%I" -t:"%%I"
+      Wfr %1 -fic:";%%I" -t:"%%I" %Wfr_Encode%
     ) 
   )
 )
@@ -117,7 +119,7 @@ For %%i in (%1) do (
     For %%j in ("!Nginx_Conf:~0,-1!") do (
       Echo A | XCopy /E /G /H /Y "%%~Dpjconfig\*" "%%~Dpiconf\"
     )
-    Wfr "%%~Dpiconf\%%~Ni.conf" -fic:"C:/server/nginx/" -t:"!Nginx_Conf!"
+    Wfr "%%~Dpiconf\%%~Ni.conf" -fic:"C:/server/nginx/" -t:"!Nginx_Conf!" %Wfr_Encode%
     Set Document_Root=!Wnmp_Dir!Web
     Set Document_Root=!Document_Root:\=/!
     Set Wnmp_Dir=!Wnmp_Dir:\=/!
@@ -126,13 +128,27 @@ For %%i in (%1) do (
       "%%~Dpiconf\conf.d\example.conf"
       "%%~Dpiconf\conf.d\phpmyadmin.conf"
     ) do (
-      Wfr %%I -fic:"C:/WEB" -t:"!Document_Root!"
-      Wfr %%I -fic:"C:/server/" -t:"!Wnmp_Dir!"
+      Wfr %%I -fic:"C:/WEB" -t:"!Document_Root!" %Wfr_Encode%
+      Wfr %%I -fic:"C:/server/" -t:"!Wnmp_Dir!" %Wfr_Encode%
     )   
   )
 )
 
 Goto :Eof
+:PhpMyAdmin_Conf
+For %%i in (
+  "!Wnmp_Dir!Web\phpMyAdmin\libraries\config.default.php"
+) do (
+  If Exist %%i (
+    Rem å¤„ç†é…ç½®æ–‡ä»¶ç°åœ¨éœ€è¦ä¸€ä¸ªçŸ­è¯­å¯†ç çš„é—®é¢˜
+    Wfr %%i -fic:"$cfg['blowfish_secret'] = '';" -t:"$cfg['blowfish_secret'] = 'DeletePhpMyAdminSecretTipsForDocTam';" %Wfr_Encode%
+    Rem Configuration of pmadbâ€¦ é”™è¯¯æ–‡æ¡£ åŸºæœ¬åŠŸèƒ½ å·²ç¦ç”¨ çš„é—®é¢˜
+    Wfr %%i -fic:"$cfg['Servers'][$i]['controluser'] = '';" -t:"$cfg['Servers'][$i]['controluser'] = 'root';" %Wfr_Encode%
+    Wfr %%i -fic:"$cfg['Servers'][$i]['controlpass'] = '';" -t:"$cfg['Servers'][$i]['controlpass'] = 'root';" %Wfr_Encode%
+  )
+)
+
+Goto :Eof
 :Create_Lnk
-NirCmd shortcut "%~F0" "!Wnmp_Dir!" "Wnmp_Start" "" "!Wnmp_Dir!Icon\icon_start.ico" "" "min" "" ""
+NirCmd shortcut "%~Dp0WebStart.bat" "!Wnmp_Dir!" "Wnmp_Start" "" "!Wnmp_Dir!Icon\icon_start.ico" "" "min" "" ""
 NirCmd shortcut "%~Dp0WebStop.bat" "!Wnmp_Dir!" "Wnmp_Stop" "" "!Wnmp_Dir!Icon\icon_stop.ico" "" "min" "" ""
