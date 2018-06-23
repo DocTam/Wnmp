@@ -18,6 +18,18 @@
 
 ⑦ 运行 `.\Bin\WebStart.Bat` 重启环境或运行 `.\Bin\WebStop.Bat` 停止环境
 
+## 更改 MySQL 账号 root 的默认密码
+
+① 报错提示：Warning: mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) ；原因：密码为空密码。
+
+② 修改 my.ini 配置文件，在 [mysqld] 这个条目下加入 skip-grant-tables 后重启 mysql
+
+③ Cmd 登录 MySQL 控制台: mysql -u root -p
+
+④ mysql> use mysql;update user set password=password("新密码") where user="root";flush privileges;quit;
+
+⑤ 修改 my.ini 配置文件，在 [mysqld] 这个条目下删除 skip-grant-tables
+
 
 ## 全局变量
 
