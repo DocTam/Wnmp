@@ -12,7 +12,7 @@
 
 ④ 再次访问 `http://localhost/index.php`，出现 `phpinfo` 信息说明 PHP 配置正常
 
-⑤ 访问 `http://localhost/test.php`，出现 `Connected successfully` 说明数据库配置正常
+⑤ 访问 `http://localhost/test.php`，出现 `Connected successfully` 说明数据库配置正常（默认账号：root；默认密码：root;或空密码）
 
 ⑥ 访问 `http://localhost/phpmyadmin`，出现 `phpmyadmin` 登录界面说明 phpmyadmin 配置正常
 
