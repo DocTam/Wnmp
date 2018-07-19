@@ -47,4 +47,4 @@
 
 # 协议
 
-[MIT](https://github.com/DocTam/Wnmp/LICENSE)
+[MIT](https://github.com/DocTam/Wnmp/blob/master/LICENSE)
